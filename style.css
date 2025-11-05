@@ -1,0 +1,225 @@
+/* Variáveis de Cores inspiradas no Layout da Captura de Tela */
+:root {
+    /* Cores para o degradê da borda e texto */
+    --color-degrade-start: #35B5AA; 
+    --color-degrade-end: #8C4AE8; 
+    --outline-gradient: linear-gradient(to right, var(--color-degrade-start), var(--color-degrade-end));
+    
+    /* Degradê do Toggle Ativo (usado para o preenchimento) */
+    --toggle-active-gradient: linear-gradient(to right, #35B5AA, #8C4AE8); 
+
+    /* Degradê do Botão "Entrar" (usado para o preenchimento no hover) */
+    --button-enter-gradient: linear-gradient(to right, #4CAF50, #2196F3); 
+    
+    --background-light: #f5f7fa; 
+    --card-background: #ffffff;
+    --text-color-dark: #333;
+    --text-color-light: #666;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+    --border-color: #eee;
+    --input-focus-color: #6a90ff;
+    --text-color-white: #ffffff; 
+}
+
+/* ------------------------------------------------------------------- */
+/* ESTILOS DE LAYOUT CRÍTICOS (Restaurando o Card) */
+/* ------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex; /* CRÍTICO: Ativa o Flexbox */
+    justify-content: center; /* CRÍTICO: Centraliza horizontalmente */
+    align-items: center; /* CRÍTICO: Centraliza verticalmente */
+    min-height: 100vh; /* CRÍTICO: Ocupa a altura total da tela */
+    background-color: var(--background-light);
+    overflow: hidden;
+}
+
+/* Fundo com Degradê Sutil */
+.background-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #e0f2f7 0%, #f0e6f7 100%);
+}
+
+.container {
+    width: 100%;
+    max-width: 380px;
+    padding: 40px;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+    /* CRÍTICO PARA A ROLAGEM INTERNA: */
+    max-height: 90vh; /* Limita o card a 90% da altura da tela */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical DENTRO DO CARD */
+}
+
+/* ------------------------------------------------------------------- */
+/* ESTILOS DE ELEMENTOS (Logo, Forms, Inputs) */
+/* ------------------------------------------------------------------- */
+
+.logo-area {
+    margin-bottom: 30px;
+}
+
+.fitmind-logo {
+    width: 200px;
+    height: auto;
+}
+
+/* Formulário e Títulos */
+.auth-form h2 {
+    margin-bottom: 25px;
+    color: var(--text-color-dark);
+    font-size: 1.5em; 
+    font-weight: 600;
+}
+
+.auth-form.hidden {
+    display: none; /* CRÍTICO: Esconde o formulário inativo */
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 15px; 
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px; 
+    font-size: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+}
+
+.input-group input:focus {
+    border-color: var(--input-focus-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(106, 144, 255, 0.2);
+}
+
+
+/* ------------------------------------------------------------------- */
+/* TOGGLE BOTÕES (Login/Cadastre-se) - FINAL */
+/* ------------------------------------------------------------------- */
+.toggle-buttons {
+    display: flex;
+    margin-bottom: 25px; 
+    border-radius: 10px; 
+    overflow: hidden;
+    background-color: transparent; 
+    
+    /* Borda Vazada com Degradê */
+    border: 2px solid transparent; 
+    background-image: linear-gradient(var(--card-background), var(--card-background)), var(--outline-gradient); 
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    padding: 0; 
+}
+
+.toggle-buttons button {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 600; 
+    transition: all 0.3s ease;
+    font-size: 1em;
+
+    /* Botões Inativos: Vazados com Texto Degradê */
+    background: var(--outline-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+/* Botão ATIVO: Preenchido com Degradê e TEXTO BRANCO */
+.toggle-buttons button.active {
+    background: var(--toggle-active-gradient); 
+    -webkit-text-fill-color: var(--text-color-white); 
+    color: var(--text-color-white); 
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; 
+}
+
+/* Botão INATIVO: Hover preenche e TEXTO FICA BRANCO */
+.toggle-buttons button:not(.active):hover {
+    background: var(--toggle-active-gradient); 
+    -webkit-text-fill-color: var(--text-color-white); 
+    color: var(--text-color-white);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ------------------------------------------------------------------- */
+/* BOTÃO PRINCIPAL (Entrar/Cadastrar) - FINAL COM CORREÇÃO DE VISIBILIDADE */
+/* ------------------------------------------------------------------- */
+.cta-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: transparent;
+    
+    /* Correção para o texto ser visível: cor sólida no estado normal */
+    background: none; 
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
+    text-fill-color: initial;
+    color: var(--color-degrade-end); /* Texto visível (roxo) */
+
+    /* Borda Vazada com Degradê */
+    border: 2px solid transparent; 
+    background-image: linear-gradient(var(--card-background), var(--card-background)), var(--outline-gradient);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    /* Preenchimento TOTAL no hover e TEXTO BRANCO */
+    background: var(--button-enter-gradient); 
+    -webkit-text-fill-color: var(--text-color-white); 
+    color: var(--text-color-white); /* Texto Branco no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-clip: border-box; 
+    
+    /* Garantia de que o texto seja branco ao preencher */
+    color: var(--text-color-white); 
+}
+
+/* Link "Esqueceu sua senha" */
+.forgot-password {
+    display: block;
+    margin-top: 15px;
+    color: #4971e4; 
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

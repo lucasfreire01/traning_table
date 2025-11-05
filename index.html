@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitmind - Login/Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <div class="container">
+        <div class="logo-area">
+            <img src="fitmind_logo.png.jpeg" alt="Fitmind Logo" class="fitmind-logo">
+        </div>
+
+        <div class="form-container">
+            <div class="toggle-buttons">
+                <button id="login-toggle" class="active">Login</button>
+                <button id="signup-toggle">Cadastre-se</button>
+            </div>
+
+            <form id="login-form" class="auth-form active">
+                <h2>Acesse sua conta</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="E-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Senha" required>
+                </div>
+                <button type="submit" class="cta-button login-button">Entrar</button>
+                <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+            </form>
+
+            <form id="signup-form" class="auth-form hidden">
+                <h2>Crie sua conta</h2>
+                <div class="input-group">
+                    <input type="text" placeholder="Nome Completo" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="E-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Senha" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Confirmar Senha" required>
+                </div>
+                <button type="submit" class="cta-button signup-button">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

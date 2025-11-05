@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitmind - Questionário</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos específicos para o questionário */
+        .questions-form {
+            text-align: left;
+            padding-top: 20px;
+        }
+
+        .question-group {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color); /* Linha divisória */
+        }
+
+        .question-group:last-of-type {
+            border-bottom: none;
+        }
+
+        .question-group label.question-text {
+            display: block;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--text-color-dark);
+            margin-bottom: 15px;
+        }
+        
+        .radio-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+        }
+
+        .radio-options input[type="radio"] {
+            display: none; /* Esconde o input de rádio nativo */
+        }
+
+        .radio-options label {
+            padding: 8px 20px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            
+            /* Botões vazados (outline) */
+            background-color: transparent;
+            color: var(--text-color-light); 
+            border-color: var(--border-color); 
+        }
+
+        .radio-options input[type="radio"]:checked + label {
+            /* Estado Ativo: Preenche com degradê e texto branco */
+            background: var(--toggle-active-gradient); 
+            color: var(--text-color-white); 
+            border-color: transparent; 
+        }
+
+        .number-input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .number-input-group input[type="number"] {
+            max-width: 80px;
+            text-align: center;
+            font-weight: 600;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        
+        .number-input-group span {
+            font-size: 0.9em;
+            color: var(--text-color-light);
+        }
+
+        /* Estilo para inputs de número que devem ser mais largos */
+        #q4-input, #q7-input {
+            max-width: 150px;
+        }
+        
+        /* O Botão CTA da outra página continua funcionando aqui */
+        .submit-area {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background-gradient"></div>
+    <div class="container">
+        <div class="logo-area">
+            <img src="fitmind_logo.png.jpeg" alt="Fitmind Logo" class="fitmind-logo">
+        </div>
+
+        <h2 style="margin-bottom: 25px;">Questionário Inicial</h2>
+
+        <form class="questions-form">
+            
+            <div class="question-group">
+                <label class="question-text">1. Qual a sua idade?</label>
+                <div class="number-input-group">
+                    <input type="number" id="q1-input" name="age" min="15" max="100" value="25" required>
+                    <span>anos</span>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">2. Qual seu peso?</label>
+                <div class="number-input-group">
+                    <input type="number" id="q2-input" name="weight" min="30" max="300" step="1" value="70" required>
+                    <span>kg</span>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">3. Qual sua altura?</label>
+                <div class="number-input-group">
+                    <input type="number" id="q3-input" name="height" min="100" max="250" step="1" value="170" required>
+                    <span>cm</span>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">4. Quantas vezes por semana faz exercícios físicos?</label>
+                <div class="number-input-group">
+                    <input type="number" id="q4-input" name="weekly_exercises" min="0" max="7" value="3" required>
+                    <span>vezes/semana</span>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">5. Sua rotina de trabalho é mais sedentária (sentado) ou ativa (em pé)?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q5-sedentary" name="work_type" value="sedentary" checked>
+                    <label for="q5-sedentary">Sedentário (Sentado)</label>
+                    <input type="radio" id="q5-active" name="work_type" value="active">
+                    <label for="q5-active">Ativo (Em pé)</label>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-text">6. Tem experiência com exercícios em academia?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q6-yes" name="gym_experience" value="1">
+                    <label for="q6-yes">Sim</label>
+                    <input type="radio" id="q6-no" name="gym_experience" value="0" checked>
+                    <label for="q6-no">Não</label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">7. Quantos dias você *deseja* treinar por semana?</label>
+                <div class="number-input-group">
+                    <input type="number" id="q7-input" name="desired_training_days" min="1" max="7" value="5" required>
+                    <span>dias/semana</span>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">8. Possui ou já teve algum problema de coração?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q8-yes" name="heart_problems" value="1">
+                    <label for="q8-yes">Sim</label>
+                    <input type="radio" id="q8-no" name="heart_problems" value="0" checked>
+                    <label for="q8-no">Não</label>
+                </div>
+            </div>
+            
+            <div class="question-group">
+                <label class="question-text">9. Possui problemas/doenças nas articulações?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q9-yes" name="joint_problems" value="1">
+                    <label for="q9-yes">Sim</label>
+                    <input type="radio" id="q9-no" name="joint_problems" value="0" checked>
+                    <label for="q9-no">Não</label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">10. Possui problemas/doenças ósseas?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q10-yes" name="bone_problems" value="1">
+                    <label for="q10-yes">Sim</label>
+                    <input type="radio" id="q10-no" name="bone_problems" value="0" checked>
+                    <label for="q10-no">Não</label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">11. Possui problemas/doenças de respiração?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q11-yes" name="respiratory_problems" value="1">
+                    <label for="q11-yes">Sim</label>
+                    <input type="radio" id="q11-no" name="respiratory_problems" value="0" checked>
+                    <label for="q11-no">Não</label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">12. Costuma consumir bebida alcoólica?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q12-yes" name="drinks" value="1">
+                    <label for="q12-yes">Sim</label>
+                    <input type="radio" id="q12-no" name="drinks" value="0" checked>
+                    <label for="q12-no">Não</label>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="question-text">13. Costuma fumar?</label>
+                <div class="radio-options">
+                    <input type="radio" id="q13-yes" name="smoker" value="1">
+                    <label for="q13-yes">Sim</label>
+                    <input type="radio" id="q13-no" name="smoker" value="0" checked>
+                    <label for="q13-no">Não</label>
+                </div>
+            </div>
+
+            <div class="submit-area">
+                <button type="submit" class="cta-button">Enviar Respostas</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

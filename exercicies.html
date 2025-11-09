@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMind - Sua Rotina de Exercícios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis CSS para Cores da Logo FitMind */
+        :root {
+            --color-start: #00bcd4; /* Ciano/Verde da logo */
+            --color-end: #8a2be2;   /* Roxo/Violeta da logo */
+            --gradient: linear-gradient(90deg, var(--color-start) 0%, var(--color-end) 100%);
+            --background-light: #f7f7f7;
+            --text-dark: #333333;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos Globais e de Fundo */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cabeçalho (Header) */
+        header {
+            background: #ffffff;
+            padding: 20px 0;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo-img {
+            /* Simula o ícone do cérebro da logo. Substitua pelo seu ícone Fitmind */
+            width: 40px; 
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 2.5em;
+            font-weight: 700;
+            /* Aplica o degradê ao texto, seguindo o estilo da sua logo */
+            background-image: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent; /* Fallback */
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+        }
+
+        /* Seção Principal de Exercícios */
+        .workout-summary {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--box-shadow);
+            border-top: 5px solid var(--color-start); /* Destaque inicial */
+        }
+
+        .workout-summary h2 {
+            font-size: 1.8em;
+            color: var(--color-end); /* Título em roxo */
+            border-bottom: 2px solid var(--color-start);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Tabela de Resumo */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .summary-table th, .summary-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .summary-table th {
+            background-color: var(--color-start);
+            color: white;
+            font-weight: 600;
+        }
+
+        .summary-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Seção de Detalhes dos Exercícios */
+        .exercise-details-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .exercise-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            transition: transform 0.3s;
+        }
+
+        .exercise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .exercise-card h3 {
+            /* Aplica o degradê aos títulos de cada exercício */
+            background-image: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+        }
+
+        .exercise-step {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 3px solid var(--color-start);
+        }
+
+        .exercise-step strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--color-end);
+        }
+
+        /* Estilo para a imagem dentro dos passos */
+        .exercise-step img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botão de Ação */
+        .action-button {
+            display: block;
+            width: fit-content;
+            margin: 40px auto;
+            padding: 15px 30px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container logo-container">
+            <img src="caminho/para/seu/logo-cerebro.png" alt="Ícone de cérebro FitMind" class="logo-img">
+            <span class="logo-text">Fitmind</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Sua Rotina de Exercícios Personalizada 💪</h1>
+
+        <div class="workout-summary">
+            <h2>Sumário do Treino</h2>
+            <p>Com base em suas respostas, recomendamos começar com **3 séries de 10 a 15 repetições** (ou 30 segundos) por exercício.</p>
+            
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Exercício</th>
+                        <th>Músculos Principais</th>
+                        <th>Sugestão de Execução</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Agachamento Livre</strong></td>
+                        <td>Pernas e Glúteos</td>
+                        <td>3 Séries de 12 repetições</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prancha Abdominal</strong></td>
+                        <td>Core (Abdômen e Lombar)</td>
+                        <td>3 Séries de 30 segundos</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Flexão de Braço</strong></td>
+                        <td>Peito, Ombros e Tríceps</td>
+                        <td>3 Séries de 10 repetições</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+<div class="container">
+    
+    <div class="workout-summary">
+        <h2>Informações Corporais 📋</h2>
+        <p>Esses são seu dados e tambem os valores recomendados para seu perfil.</p>
+
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Informações</th>
+                    <th>Valores</th>
+                    <th>Recomendado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Objetivo Calórico Diário</strong></td>
+                    <td><span class="placeholder-value">[Valor atual]</span></td> 
+                    <td><span class="placeholder-value">[Valor recomendado para caloricGoal]</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Gasto Calórico Total (TDEE)</strong></td>
+                    <td><span class="placeholder-value">[Valor atual]</span></td> 
+                    <td><span class="placeholder-value">[Valor recomendado para TDEE]</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Taxa Metabólica Basal (TMB)</strong></td>
+                    <td><span class="placeholder-value">[Valor atual]</span></td> 
+                    <td><span class="placeholder-value">[Valor recomendado para TMB]</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Índice de Massa Corporal (IMC)</strong></td>
+                    <td><span class="placeholder-value">[Valor atual]</span></td> 
+                    <td><span class="placeholder-value">[Valor recomendado para IMC]</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Possui Lesão Muscular?</strong></td>
+                    <td><span class="placeholder-value">[Sim/Não]</span></td> 
+                    <td><span class="placeholder-value">[Ação recomendada para Lesão]</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Possui Atrofia Muscular?</strong></td>
+                    <td><span class="placeholder-value">[Sim/Não]</span></td> 
+                    <td><span class="placeholder-value">[Ação recomendada para Atrofia]</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Usuário com altura elevada?</strong></td>
+                    <td><span class="placeholder-value">[Sim/Não]</span></td> 
+                    <td><span class="placeholder-value">[Ação recomendada para Altura]</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    </div>
+
+<style>
+/* ... (CSS anterior) ... */
+.placeholder-value {
+    color: #999999; /* Cor cinza para indicar que é um dado de placeholder */
+    font-style: italic;
+}
+/* ... (Resto do seu CSS) ... */
+</style>
+    
+    </div>
+        <div class="exercise-details-section">
+            
+            <div class="exercise-card">
+                <h3>1. Agachamento Livre</h3>
+                
+                <div class="exercise-step">
+                    <strong>Passo 1: Posição Inicial</strong>
+                    <p>Fique em pé com os pés na largura dos ombros. Peito ereto, olhando para frente.</p>
+                    <img src="img1_agachamento_passo1.png" alt="Posição Inicial do Agachamento">
+                </div>
+
+                <div class="exercise-step">
+                    <strong>Passo 2: Descida</strong>
+                    <p>Empurre o quadril para trás e desça, mantendo a coluna reta e os joelhos alinhados com os pés.</p>
+                    <img src="img1_agachamento_passo2.png" alt="Posição do Agachamento">
+                </div>
+
+                <div class="exercise-step">
+                    <strong>Passo 3: Subida</strong>
+                    <p>Empurre os calcanhares para retornar à posição inicial, contraindo glúteos e abdômen.</p>
+                    <img src="img1_agachamento_passo3.png" alt="Final do Movimento do Agachamento">
+                </div>
+            </div>
+
+            <div class="exercise-card">
+                <h3>2. Prancha Abdominal</h3>
+                
+                <div class="exercise-step">
+                    <strong>Passo 1: Posição de Apoio</strong>
+                    <p>Deite-se de bruços. Apoie os antebraços no chão, cotovelos alinhados com os ombros.</p>
+                    <img src="img1_abdominal_passo1.png" alt="Preparação para Prancha">
+                </div>
+
+                <div class="exercise-step">
+                    <strong>Passo 2: Elevação e Alinhamento</strong>
+                    <p>Levante o corpo, formando uma linha reta da cabeça aos calcanhares, apoiando-se nos antebraços e pés.</p>
+                    <img src="img1_abdominal_passo2.png" alt="Posição da Prancha">
+                </div>
+
+                <div class="exercise-step">
+                    <strong>Passo 3: Sustentação</strong>
+                    <p>Mantenha o abdômen e glúteos contraídos, evitando levantar ou curvar o quadril. Respire fundo.</p>
+                    <img src="img1_abdominal_passo3.png" alt="Foco na Contração da Prancha">
+                </div>
+            </div>
+            
+            <div class="exercise-card">
+                <h3>3. Flexão de Braço</h3>
+                
+                <div class="exercise-step">
+                    <strong>Passo 1: Posição Inicial</strong>
+                    <p>Posição de prancha alta. Mãos um pouco mais afastadas que os ombros. Corpo reto.</p>
+                    <img src="img1_pushup_passo1.png" alt="Posição Inicial da Flexão">
+                </div>
+
+                <div class="exercise-step">
+                    <strong>Passo 2: Descida</strong>
+                    <p>Flexione os cotovelos, baixando o peito em direção ao chão, mantendo os cotovelos ligeiramente para fora.</p>
+                    <img src="img1_pushup_passo2.png" alt="Meio do Movimento da Flexão">
+                </div>
+
+                <div class="exercise-step">
+                    <strong>Passo 3: Subida</strong>
+                    <p>Empurre o chão para estender os braços e retornar à posição inicial.</p>
+                    <img src="img1_pushup_passo3.png" alt="Fim do Movimento da Flexão">
+                </div>
+            </div>
+
+        </div>
+
+        <a href="#" class="action-button">Começar Meu Treino Agora!</a>
+    </div>
+    
+</body>
+</html>
